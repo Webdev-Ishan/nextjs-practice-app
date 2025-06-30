@@ -1,4 +1,4 @@
-import { NextAuthOptions, Session } from "next-auth";
+import { NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -22,7 +22,7 @@ export const authOptions: NextAuthOptions = {
         email: { label: "email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Email or password is not found.");
         }

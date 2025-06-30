@@ -42,8 +42,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    let salt = await bcrypt.genSalt(Number(saltvalue));
-    let hashedPassword = await bcrypt.hash(password, salt);
+    const salt = await bcrypt.genSalt(Number(saltvalue));
+    const hashedPassword = await bcrypt.hash(password, salt);
 
     const user = await prisma.user.create({
       data: {

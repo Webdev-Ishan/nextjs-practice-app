@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@imagekit/next": "^2.1.2",
     "@prisma/client": "^6.10.1",
     "@types/bcrypt": "^5.0.2",
     "bcrypt": "^6.0.0",
