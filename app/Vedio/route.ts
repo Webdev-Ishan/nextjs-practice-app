@@ -3,12 +3,11 @@ import { prisma } from "@/lib/DB";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { default_transformation } from "@/utils/defaultvalues";
 
 export const transformationSchema = z.object({
-  height: z.number(),
-  width: z.number(),
-  quality: z.number(),
+  height: z.number().default(1920),
+  width: z.number().default(1080),
+  quality: z.number().default(100),
 });
 
 export const vedioSchema = z.object({
@@ -66,21 +65,19 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { title, description, vedioURL, thumbnailURL, controls } =
-      parsedbody.data;
+    const { title, description, vedioURL, thumbnailURL, controls, transformations } = parsedbody.data;
 
-    // Save video metadata to DB
-    const vedio = await prisma.vedio.create({
-      data: {
-        title,
-        description,
-        vedioURL,
-        thumbnailURL,
-        controls: controls,
-        transformations: default_transformation,
-        userId: Number(session.user.id), // Ensure this is an integer
-      },
-    });
+const vedio = await prisma.vedio.create({
+  data: {
+    title,
+    description,
+    vedioURL,
+    thumbnailURL,
+    controls,
+    transformations, // This will always have height, width, quality
+    userId: Number(session.user.id),
+  },
+});
 
     return NextResponse.json({ success: true, vedio }, { status: 201 });
   } catch (error) {

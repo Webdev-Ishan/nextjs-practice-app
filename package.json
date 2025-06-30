@@ -11,7 +11,9 @@
   "dependencies": {
     "@imagekit/next": "^2.1.2",
     "@prisma/client": "^6.10.1",
+    "@types/axios": "^0.9.36",
     "@types/bcrypt": "^5.0.2",
+    "axios": "^1.10.0",
     "bcrypt": "^6.0.0",
     "next": "15.3.4",
     "next-auth": "^4.24.11",
