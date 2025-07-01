@@ -24,14 +24,14 @@ const Page = () => {
       
 
       if (!res?.error) {
-        alert("Registration successful!");
+        alert("Login successful!");
 
         setEmail("");
         setPassword("");
 
-        router.push("/login");
+        router.push("/");
       } else {
-        alert(res?.error || "Registration failed.");
+        alert(res?.error || "Login failed.");
       }
     } catch (error) {
       console.error(error);
